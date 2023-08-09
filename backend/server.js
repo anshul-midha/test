@@ -22,13 +22,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 var index = require('./routes/authRoutes');
 app.use('/', index);
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  var err = new Error('File Not Found');
-  err.status = 404;
-  next(err);
-});
-
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, function () {
   console.log('Server is started on http://127.0.0.1:'+PORT);

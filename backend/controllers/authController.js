@@ -1,6 +1,3 @@
-const { body, param, validationResult } = require('express-validator')
-const bcrypt = require('bcrypt');
-const jwt = require('../utils/jwtToken');
 var User = require('../models/user');
 
 /**user login */
@@ -9,17 +6,17 @@ exports.userLogin = async (req, res, next) => {
     User.findOne({email:req.body.email},function(err,data){
 		if(data){
 			if(data.password==req.body.password){
-				res.send({"Success":"Success!"});
+				res.send({"message":"Success!"});
 			}else{
-				res.send({"Success":"Wrong password!"});
+				res.send({"message":"Wrong password!"});
 			}
 		}else{
-			res.send({"Success":"This Email Is not regestered!"});
+			res.send({"message":"This Email Is not regestered!"});
 		}
 	});
 };
 
-/** user registration */
+/** user signup */
 exports.userSignup = async (req, res, next) => {
     try {
     console.log(req.body);
@@ -45,11 +42,11 @@ exports.userSignup = async (req, res, next) => {
 						});
 
 				} else {
-					res.send({"Success":"Email is already used."});
+					res.send({"message":"Email is already used."});
 				}
 				});
 			} else {
-				res.send({"Success":"password is not matched"});
+				res.send({"message":"password is not matched"});
 			}
 		}
     } catch (err) {
